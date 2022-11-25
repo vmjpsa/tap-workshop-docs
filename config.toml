@@ -1,0 +1,5 @@
+baseURL = 'https://vmjpsa.github.io/tap-workshop-docs'
+languageCode = 'ja'
+title = 'TAP ワークショップ'
+publishDir = "docs"
+theme = "hugo-book"

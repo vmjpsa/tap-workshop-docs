@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
 <head>
-	<meta name="generator" content="Hugo 0.107.0">
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Tanzu Application Platform ワークショップ#このワークショップでは、Chrome、Edge、またはFirefoxブラウザを使用することをお勧めします。
-Tanzu Application Platform (TAP)は、Kubernetesの上に開発者体験を提供することを可能にします。事業者は、開発者にプラットフォームを意識したアプリケーションを書かせるのではなく、アプリケーションを意識したプラットフォームをカスタマイズしてデプロイすることができます。
-Tanzu Application Platformは、コンテナオーケストレーション、セキュアなソフトウェアサプライチェーン、GitOpsデプロイメント/プロモーションモデルなどの仕組みを抽象化します。これにより、開発者はビジネスロジック、ユーザーインターフェース、APIのオーサリングのみに集中することができます。一方、運用チームは、新しいアプリケーションを導入するたびに、一貫性のある自動化された反復可能な方法で実装される、準拠したデリバリー・プロセスを宣言することができます。
-このデモでは、開発チームとオペレーターがプラットフォームとどのように関わり、反復的な開発サイクルと、安全で自動化された本番環境への配信を可能にするのかを紹介します。
-下の右隅にある青いボタンをクリックすると、いつでもワークショップの次のパートに進むことができます。それではボタンをクリックして開始してください。">
+<meta name="description" content="TAP GUI#概要">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Tanzu Application Platform ワークショップ" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="TAP GUI" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://vmjpsa.github.io/tap-workshop-docs/" />
+<meta property="og:url" content="https://vmjpsa.github.io/tap-workshop-docs/docs/module3/" />
 
-<title>Tanzu Application Platform ワークショップ | TAP ワークショップ</title>
+<title>TAP GUI | TAP ワークショップ</title>
 <link rel="manifest" href="/tap-workshop-docs/manifest.json">
 <link rel="icon" href="/tap-workshop-docs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/tap-workshop-docs/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/tap-workshop-docs/flexsearch.min.js"></script>
   <script defer src="/tap-workshop-docs/en.search.min.2683c8ddffc2a2ebf7c23ae32e2af84bb3756505b803a436046d6f2b6f4b0f1c.js" integrity="sha256-JoPI3f/Couv3wjrjLir4S7N1ZQW4A6Q2BG1vK29LDxw=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://vmjpsa.github.io/tap-workshop-docs/index.xml" title="TAP ワークショップ" />
+<link rel="alternate" type="application/rss+xml" href="https://vmjpsa.github.io/tap-workshop-docs/docs/module3/index.xml" title="TAP ワークショップ" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -110,7 +105,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module3/" class="">TAP GUI</a>
+    <a href="/tap-workshop-docs/docs/module3/" class="active">TAP GUI</a>
   
 
           
@@ -283,7 +278,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/tap-workshop-docs/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Tanzu Application Platform ワークショップ</strong>
+  <strong>TAP GUI</strong>
 
   <label for="toc-control">
     
@@ -308,18 +303,11 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="tanzu-application-platform-ワークショップ">
-  Tanzu Application Platform ワークショップ
-  <a class="anchor" href="#tanzu-application-platform-%e3%83%af%e3%83%bc%e3%82%af%e3%82%b7%e3%83%a7%e3%83%83%e3%83%97">#</a>
+  <article class="markdown"><h1 id="tap-gui">
+  TAP GUI
+  <a class="anchor" href="#tap-gui">#</a>
 </h1>
-<p>このワークショップでは、Chrome、Edge、またはFirefoxブラウザを使用することをお勧めします。</p>
-<p><strong>Tanzu Application Platform (TAP)<strong>は、Kubernetesの上に</strong>開発者体験</strong>を提供することを可能にします。事業者は、開発者にプラットフォームを意識したアプリケーションを書かせるのではなく、<strong>アプリケーションを意識したプラットフォーム</strong>をカスタマイズしてデプロイすることができます。</p>
-<p>Tanzu Application Platformは、コンテナオーケストレーション、セキュアなソフトウェアサプライチェーン、GitOpsデプロイメント/プロモーションモデルなどの仕組みを抽象化します。これにより、開発者はビジネスロジック、ユーザーインターフェース、APIのオーサリングのみに集中することができます。一方、運用チームは、新しいアプリケーションを導入するたびに、一貫性のある自動化された反復可能な方法で実装される、準拠したデリバリー・プロセスを宣言することができます。</p>
-<figure><img src="tap-overview.png" width="100%"/>
-</figure>
-
-<p>このデモでは、開発チームとオペレーターがプラットフォームとどのように関わり、反復的な開発サイクルと、安全で自動化された本番環境への配信を可能にするのかを紹介します。</p>
-<p>下の右隅にある青いボタンをクリックすると、いつでもワークショップの次のパートに進むことができます。それではボタンをクリックして開始してください。</p>
+<p>概要</p>
 </article>
  
       

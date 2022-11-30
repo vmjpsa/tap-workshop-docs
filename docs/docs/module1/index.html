@@ -3,26 +3,23 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="TAP 概要#今回は、アプリケーション開発者である Cody のストーリーを基にラボを進めます。彼の会社では現在 Tanzu Application Platform が稼働しており、Cody はこのプラットフォームを使ってコンテナ化したアプリケーションの配信を始めたいと考えています。
-Cody は Tanzu Application Platform を使うにあたっての最初のステップとして、今皆さんが使用しているオンラインワークショップ環境である Learning Center にログインし、Tanzu Application Platform の生産性を高めるための初日トレーニングを受講済です。
-Learning Centerを活用することで、アプリケーション開発のための会社のベストプラクティスや手順を知ることができます。しかし、Cody や皆さんはここでドキュメントなどのコンテンツを読むだけではなく、Learning Center が提供するターミナルセッションウィンドウや IDE などを活用して、実際の環境に影響を与えることなく、ラボ環境の中で Tanzu Application Platform の実際の機能を試したり、失敗しながら学ぶことが可能です。
-Cody の会社では、Learning Center のワークショップを作成し、カスタマイズすることで、その企業に特化した教育が非常に簡単に行えるようになりました。Gitレポジトリの README を書くのと同じくらい簡単です。
-これからワークショップを通して Learning Center を使っていくにあたって、まずはターミナルを使いやすくしていきましょう。右側のターミナルウィンドウで Linux シェルコマンドを入力するか、下のテキストボックスをクリックして Learning Center がコマンドを実行してくれるようにします。
-kubectl config get-contexts eduk8s
+<meta name="description" content="ワークショップ環境の概要#本ワークショップではCode Server と呼ばれるWeb サービスとし提供されるVS Code 環境を利用します。アクセスURL とパスワードに関しては講師からお伝えします。
+ワークショップを提供する環境はこのようになっています。 TAP は既にインストール済みなので、ワークショップ参加者がTAP のインストールや構成変更をする必要はありません。
+Code Server の使い方#基本的な操作
 menu1 overview#あああ
 補足情報を書きます。注意が必要な情報を書きます。ラボの進行に影響があるなど、重要な情報を書きます。解答解答です。ls ">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="TAP 概要" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="ワークショップ環境" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://vmjpsa.github.io/tap-workshop-docs/docs/module1/" />
 
-<title>TAP 概要 | TAP ワークショップ</title>
+<title>ワークショップ環境 | TAP ワークショップ</title>
 <link rel="manifest" href="/tap-workshop-docs/manifest.json">
 <link rel="icon" href="/tap-workshop-docs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/tap-workshop-docs/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/tap-workshop-docs/flexsearch.min.js"></script>
-  <script defer src="/tap-workshop-docs/en.search.min.2683c8ddffc2a2ebf7c23ae32e2af84bb3756505b803a436046d6f2b6f4b0f1c.js" integrity="sha256-JoPI3f/Couv3wjrjLir4S7N1ZQW4A6Q2BG1vK29LDxw=" crossorigin="anonymous"></script>
+  <script defer src="/tap-workshop-docs/en.search.min.7a5884e551c2a3d67d68ead6abe5dc7781dd890b0718c5376596ff196dc4c443.js" integrity="sha256-eliE5VHCo9Z9aOrWq&#43;Xcd4HdiQsHGMU3ZZb/GW3ExEM=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://vmjpsa.github.io/tap-workshop-docs/docs/module1/index.xml" title="TAP ワークショップ" />
 <!--
 Made with Book Theme
@@ -76,7 +73,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module1/" class="active">TAP 概要</a>
+    <a href="/tap-workshop-docs/docs/module1/" class="active">ワークショップ環境</a>
   
 
           
@@ -94,7 +91,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module2/" class="">ラボ環境へのアクセス</a>
+    <a href="/tap-workshop-docs/docs/module2/" class="">TAP 概要</a>
   
 
           
@@ -285,7 +282,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/tap-workshop-docs/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>TAP 概要</strong>
+  <strong>ワークショップ環境</strong>
 
   <label for="toc-control">
     
@@ -314,16 +311,24 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="tap-概要">
-  TAP 概要
-  <a class="anchor" href="#tap-%e6%a6%82%e8%a6%81">#</a>
+  <article class="markdown"><h1 id="ワークショップ環境の概要">
+  ワークショップ環境の概要
+  <a class="anchor" href="#%e3%83%af%e3%83%bc%e3%82%af%e3%82%b7%e3%83%a7%e3%83%83%e3%83%97%e7%92%b0%e5%a2%83%e3%81%ae%e6%a6%82%e8%a6%81">#</a>
 </h1>
-<p>今回は、アプリケーション開発者である Cody のストーリーを基にラボを進めます。彼の会社では現在 Tanzu Application Platform が稼働しており、Cody はこのプラットフォームを使ってコンテナ化したアプリケーションの配信を始めたいと考えています。</p>
-<p>Cody は Tanzu Application Platform を使うにあたっての最初のステップとして、今皆さんが使用しているオンラインワークショップ環境である Learning Center にログインし、Tanzu Application Platform の生産性を高めるための初日トレーニングを受講済です。</p>
-<p>Learning Centerを活用することで、アプリケーション開発のための会社のベストプラクティスや手順を知ることができます。しかし、Cody や皆さんはここでドキュメントなどのコンテンツを読むだけではなく、Learning Center が提供するターミナルセッションウィンドウや IDE などを活用して、実際の環境に影響を与えることなく、ラボ環境の中で Tanzu Application Platform の実際の機能を試したり、失敗しながら学ぶことが可能です。</p>
-<p>Cody の会社では、Learning Center のワークショップを作成し、カスタマイズすることで、その企業に特化した教育が非常に簡単に行えるようになりました。Gitレポジトリの README を書くのと同じくらい簡単です。</p>
-<p>これからワークショップを通して Learning Center を使っていくにあたって、まずはターミナルを使いやすくしていきましょう。右側のターミナルウィンドウで Linux シェルコマンドを入力するか、下のテキストボックスをクリックして Learning Center がコマンドを実行してくれるようにします。</p>
-<p>kubectl config get-contexts eduk8s</p>
+<p>本ワークショップではCode Server と呼ばれるWeb サービスとし提供されるVS Code 環境を利用します。アクセスURL とパスワードに関しては講師からお伝えします。</p>
+<p>ワークショップを提供する環境はこのようになっています。
+<figure><img src="tap-overview.png" width="100%"/>
+</figure>
+
+TAP は既にインストール済みなので、ワークショップ参加者がTAP のインストールや構成変更をする必要はありません。</p>
+<h1 id="code-server-の使い方">
+  Code Server の使い方
+  <a class="anchor" href="#code-server-%e3%81%ae%e4%bd%bf%e3%81%84%e6%96%b9">#</a>
+</h1>
+<figure><img src="tap-overview.png" width="100%"/>
+</figure>
+
+<p>基本的な操作</p>
 <h2 id="menu1-overview">
   menu1 overview
   <a class="anchor" href="#menu1-overview">#</a>

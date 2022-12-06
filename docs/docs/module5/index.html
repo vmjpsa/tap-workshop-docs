@@ -3,19 +3,24 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Live Update#概要">
+<meta name="description" content="TODO node でどこまで見れるか、見られない場合は次の章に後回し Live View は現在、Spring Boot の Java アプリケーションと、Steeltoe .NET Core アプリケーションに対応しています。#Live View#アプリケーションをデプロイした後、そのアプリケーションが期待通りの動作をせず、診断やトラブルシューティングのためにアプリケーションのランタイムの動作に関する詳細な情報（例えば、アプリケーションのメモリが不足しているのか？ HTTP リクエストのレスポンスタイムはどうなっているのか？）が必要になることがあります。
+Tanzu Application Platform は、Taro のような開発者がそういった情報を収集するのに役立つ Live View を提供しています。ここからは Live View の機能について見てみましょう。まずは TAP GUI （Web UI） にアクセスし、先ほど作成したアプリケーションを確認してみましょう。TAP GUI を再度開く必要がある場合は、下記コマンドでURL を調べることができます。
+echo $TAP_GUI_URL 画像#ここでは、私たちのアプリケーションであるnode-hello-tanzu のDeployment (Kubernetes リソース)を実行しています。複数のDeployment がリストアップされている可能性が高いです。これはマルチテナント開発環境では、異なる開発者 (または異なるワークショップセッション) がそれぞれコードのブランチに取り組んでいるためです。マルチテナント開発クラスタ (TAP では Iterate クラスタとも呼ばれます) では、各開発者は開発環境を分離するために各自のネームスペースで作業しています。
+あなたのセッションの名前空間は下記コマンドで確認できます（今回は全員同じアプリケーションをデプロイしているため、他のユーザーの名前空間を確認しても構いません）。
+echo tap-workshop-$SESSION_NUMBER 次に、名前空間に対応する行のnode-hello-tanzu ハイパーリンクをクリックし、Kind 列のKnative Serviceという値をクリックします。これで、アプリの詳細ビューが表示されます。
+画像#この画面を下にスクロールすると、アプリに関連する Kubernetes リソースが表示されます。画面の一番下には、Pod があります。Kubernetes では Pod はアプリケーションコンテナが実行される場所です。では、自分の Pod の名前をクリックしてみましょう。">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="App Live View" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Live View" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://vmjpsa.github.io/tap-workshop-docs/docs/module5/" />
 
-<title>App Live View | TAP ワークショップ</title>
+<title>Live View | TAP ワークショップ</title>
 <link rel="manifest" href="/tap-workshop-docs/manifest.json">
 <link rel="icon" href="/tap-workshop-docs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/tap-workshop-docs/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/tap-workshop-docs/flexsearch.min.js"></script>
-  <script defer src="/tap-workshop-docs/en.search.min.39ad7585198c5fb00265b3db12d509ebf380a3059ac54f89e851cb4791e366d0.js" integrity="sha256-Oa11hRmMX7ACZbPbEtUJ6/OAowWaxU&#43;J6FHLR5HjZtA=" crossorigin="anonymous"></script>
+  <script defer src="/tap-workshop-docs/en.search.min.b0d7cc7ca2e4675a0a2d9ed9a15acb8d5e46bfe61395f0ef1d941a85f75e64ae.js" integrity="sha256-sNfMfKLkZ1oKLZ7ZoVrLjV5Gv&#43;YTlfDvHZQahfdeZK4=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://vmjpsa.github.io/tap-workshop-docs/docs/module5/index.xml" title="TAP ワークショップ" />
 <!--
 Made with Book Theme
@@ -141,7 +146,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module5/" class="active">App Live View</a>
+    <a href="/tap-workshop-docs/docs/module5/" class="active">Live View</a>
   
 
           
@@ -159,7 +164,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module6/" class="">アプリケーションのビルド</a>
+    <a href="/tap-workshop-docs/docs/module6/" class="">サプライチェーン</a>
   
 
           
@@ -278,7 +283,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/tap-workshop-docs/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>App Live View</strong>
+  <strong>Live View</strong>
 
   <label for="toc-control">
     
@@ -292,7 +297,17 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#todo-node-でどこまで見れるか見られない場合は次の章に後回し-live-view-は現在spring-boot-の-java-アプリケーションとsteeltoe-net-core-アプリケーションに対応しています">TODO node でどこまで見れるか、見られない場合は次の章に後回し Live View は現在、Spring Boot の Java アプリケーションと、Steeltoe .NET Core アプリケーションに対応しています。</a></li>
+    <li><a href="#live-view">Live View</a></li>
+    <li><a href="#画像">画像</a></li>
+    <li><a href="#画像-1">画像</a></li>
+    <li><a href="#画像-2">画像</a></li>
+    <li><a href="#画像-3">画像</a></li>
+    <li><a href="#画像-4">画像</a></li>
+  </ul>
+</nav>
 
 
 
@@ -303,12 +318,47 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="live-update">
-  Live Update
-  <a class="anchor" href="#live-update">#</a>
-</h1>
-<p>概要</p>
-</article>
+  <article class="markdown"><h2 id="todo-node-でどこまで見れるか見られない場合は次の章に後回し-live-view-は現在spring-boot-の-java-アプリケーションとsteeltoe-net-core-アプリケーションに対応しています">
+  TODO node でどこまで見れるか、見られない場合は次の章に後回し Live View は現在、Spring Boot の Java アプリケーションと、Steeltoe .NET Core アプリケーションに対応しています。
+  <a class="anchor" href="#todo-node-%e3%81%a7%e3%81%a9%e3%81%93%e3%81%be%e3%81%a7%e8%a6%8b%e3%82%8c%e3%82%8b%e3%81%8b%e8%a6%8b%e3%82%89%e3%82%8c%e3%81%aa%e3%81%84%e5%a0%b4%e5%90%88%e3%81%af%e6%ac%a1%e3%81%ae%e7%ab%a0%e3%81%ab%e5%be%8c%e5%9b%9e%e3%81%97-live-view-%e3%81%af%e7%8f%be%e5%9c%a8spring-boot-%e3%81%ae-java-%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%81%a8steeltoe-net-core-%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%81%ab%e5%af%be%e5%bf%9c%e3%81%97%e3%81%a6%e3%81%84%e3%81%be%e3%81%99">#</a>
+</h2>
+<h2 id="live-view">
+  Live View
+  <a class="anchor" href="#live-view">#</a>
+</h2>
+<p>アプリケーションをデプロイした後、そのアプリケーションが期待通りの動作をせず、診断やトラブルシューティングのためにアプリケーションのランタイムの動作に関する詳細な情報（例えば、アプリケーションのメモリが不足しているのか？ HTTP リクエストのレスポンスタイムはどうなっているのか？）が必要になることがあります。</p>
+<p>Tanzu Application Platform は、Taro のような開発者がそういった情報を収集するのに役立つ Live View を提供しています。ここからは Live View の機能について見てみましょう。まずは TAP GUI （Web UI） にアクセスし、先ほど作成したアプリケーションを確認してみましょう。TAP GUI を再度開く必要がある場合は、下記コマンドでURL を調べることができます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>echo $TAP_GUI_URL
+</span></span></code></pre></div><h2 id="画像">
+  画像
+  <a class="anchor" href="#%e7%94%bb%e5%83%8f">#</a>
+</h2>
+<p>ここでは、私たちのアプリケーションであるnode-hello-tanzu のDeployment (Kubernetes リソース)を実行しています。複数のDeployment がリストアップされている可能性が高いです。これはマルチテナント開発環境では、異なる開発者 (または異なるワークショップセッション) がそれぞれコードのブランチに取り組んでいるためです。マルチテナント開発クラスタ (TAP では Iterate クラスタとも呼ばれます) では、各開発者は開発環境を分離するために各自のネームスペースで作業しています。</p>
+<p>あなたのセッションの名前空間は下記コマンドで確認できます（今回は全員同じアプリケーションをデプロイしているため、他のユーザーの名前空間を確認しても構いません）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>echo tap-workshop-$SESSION_NUMBER
+</span></span></code></pre></div><p>次に、名前空間に対応する行のnode-hello-tanzu ハイパーリンクをクリックし、Kind 列の<strong>Knative Service</strong>という値をクリックします。これで、アプリの詳細ビューが表示されます。</p>
+<h2 id="画像-1">
+  画像
+  <a class="anchor" href="#%e7%94%bb%e5%83%8f-1">#</a>
+</h2>
+<p>この画面を下にスクロールすると、アプリに関連する Kubernetes リソースが表示されます。画面の一番下には、Pod があります。Kubernetes では Pod はアプリケーションコンテナが実行される場所です。では、自分の Pod の名前をクリックしてみましょう。</p>
+<h2 id="画像-2">
+  画像
+  <a class="anchor" href="#%e7%94%bb%e5%83%8f-2">#</a>
+</h2>
+<p>Pod の情報が見られる画面の上部には、詳細情報が見られる画面へのリンクがあり、プロセスに関する主要な情報に素早くアクセスできます。View Pod Logs をクリックすると、アプリが動作している Kubernetes サーバーのアプリケーションログを見ることができます。</p>
+<h2 id="画像-3">
+  画像
+  <a class="anchor" href="#%e7%94%bb%e5%83%8f-3">#</a>
+</h2>
+<p>少し下にスクロールすると、ライブビューペインが表示されます。ここには、Information Category というドロップダウンのメニューがあり、Application Runtime のあらゆるデータを閲覧することができます。</p>
+<h2 id="画像-4">
+  画像
+  <a class="anchor" href="#%e7%94%bb%e5%83%8f-4">#</a>
+</h2>
+<p>これらのデータを好きに確認してみてください。ここには多くの見るべきものがあり、アプリケーションの環境変数のチェック、スレッドスタックトレースの表示、メモリ消費量のグラフ表示、各 HTTP リクエストのトレース情報など、様々な情報を見ることができます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tanzu workload apps delete node-hello-tanzu -y
+</span></span></code></pre></div></article>
  
       
 
@@ -347,7 +397,17 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#todo-node-でどこまで見れるか見られない場合は次の章に後回し-live-view-は現在spring-boot-の-java-アプリケーションとsteeltoe-net-core-アプリケーションに対応しています">TODO node でどこまで見れるか、見られない場合は次の章に後回し Live View は現在、Spring Boot の Java アプリケーションと、Steeltoe .NET Core アプリケーションに対応しています。</a></li>
+    <li><a href="#live-view">Live View</a></li>
+    <li><a href="#画像">画像</a></li>
+    <li><a href="#画像-1">画像</a></li>
+    <li><a href="#画像-2">画像</a></li>
+    <li><a href="#画像-3">画像</a></li>
+    <li><a href="#画像-4">画像</a></li>
+  </ul>
+</nav>
 
 
  

@@ -43,7 +43,7 @@ git push https://$GIT_USER:$GIT_PASSWORD@$GIT_URL/tap-workshop/node-hello-tanzu-
 これで準備ができたので、下記コマンドでアプリケーションをデプロイしましょう。
 
 ```shell
-tanzu apps workload create node-hello-tanzu --git-repo https://$GIT_URL/tap-workshop/node-hello-tanzu-$SESSION_NUMBER.git --git-branch main --label app.kubernetes.io/part-of=tanzu-node-hello-tanzu --type web -annotation autoscaling.knative.dev/minScale=1 -y
+tanzu apps workload create node-hello-tanzu --git-repo https://$GIT_URL/tap-workshop/node-hello-tanzu-$SESSION_NUMBER.git --git-branch main --label app.kubernetes.io/part-of=tanzu-node-hello-tanzu --type web --annotation autoscaling.knative.dev/minScale=1 -y
 ```
 このコマンドは少々複雑ですが、オプションとしてgit リポジトリやブランチなどを指定しています。 --annotation autoscaling.knative.dev/minScale=1 の意味は、Knative Serving の最小インスタンス数を1 以上に設定し、時間経過でPod の数が0 になることを防止しています。
 
@@ -54,23 +54,27 @@ tanzu apps workload create node-hello-tanzu --git-repo https://$GIT_URL/tap-work
 tanzu コマンドの結果として、下記のようなログが出力されるはずです。
 
 ```
-coder@code-server-696f98d647-vx77m:~/node-hello-tanzu$ tanzu apps workload create node-hello-tanzu --git-repo https://$GIT_URL/tap-workshop/node-hello-tanzu-$SESSION_NUMBER.git --git-branch main --label app.kubernetes.io/part-of=node-hello-tanzu --type web -y
+coder@code-server-69dd88bff7-d9x22:~/node-hello-tanzu$ tanzu apps workload create node-hello-tanzu --git-repo https://$GIT_URL/tap-workshop/node-hello-tanzu-$SESSION_NUMBER.git --git-branch main --label app.kubernetes.io/part-of=tanzu-node-hello-tanzu --type web --annotation autoscaling.knative.dev/minScale=1 -y
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
       3 + |kind: Workload
       4 + |metadata:
       5 + |  labels:
-      6 + |    app.kubernetes.io/part-of: node-hello-tanzu
+      6 + |    app.kubernetes.io/part-of: tanzu-node-hello-tanzu
       7 + |    apps.tanzu.vmware.com/workload-type: web
       8 + |  name: node-hello-tanzu
       9 + |  namespace: tap-workshop-01
      10 + |spec:
-     11 + |  source:
-     12 + |    git:
-     13 + |      ref:
-     14 + |        branch: main
-     15 + |      url: https://$GIT_URL/tap-workshop/node-hello-tanzu-01.git
+     11 + |  params:
+     12 + |  - name: annotations
+     13 + |    value:
+     14 + |      autoscaling.knative.dev/minScale: "1"
+     15 + |  source:
+     16 + |    git:
+     17 + |      ref:
+     18 + |        branch: main
+     19 + |      url: https://$GIT_URL/tap-workshop/node-hello-tanzu-01.git
 
 Created workload "node-hello-tanzu"
 

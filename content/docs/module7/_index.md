@@ -62,6 +62,12 @@ source-to-url サプライチェーンと異なり、いくつか追加のステ
 
 {{< figure src="tanzu-java-web-app.png" width="100%">}}
 
+最後に、デプロイしたアプリケーションを削除します。
+
+```shell
+tanzu apps workload delete tanzu-java-web-app -y
+```
+
 
 
 

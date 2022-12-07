@@ -192,7 +192,7 @@ node-hello-t… │   → Container node-hello-tanzu-00002-deployment-5ffd767b87
 
 
 ```shell
-tanzu apps workload delete node-hello-tanzu
+tanzu apps workload delete node-hello-tanzu -y
 ```
 
 また、ログでターミナルが汚れていると思いますので、確認し終わったらclear してしまいましょう。

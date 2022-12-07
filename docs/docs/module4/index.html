@@ -22,7 +22,7 @@ Kubernetes リソースの作成#開発環境が Kubernetes クラスタの場
 <link rel="icon" href="/tap-workshop-docs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/tap-workshop-docs/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/tap-workshop-docs/flexsearch.min.js"></script>
-  <script defer src="/tap-workshop-docs/en.search.min.2aa03a4f13042c6d19d08f546abb85146b483e9bcb0c9470b2fa35f3d31ad418.js" integrity="sha256-KqA6TxMELG0Z0I9UaruFFGtIPpvLDJRwsvo189Ma1Bg=" crossorigin="anonymous"></script>
+  <script defer src="/tap-workshop-docs/en.search.min.72b511a952b1a92b91b4d293a6a99583d3e84f935ce3aa28ca1a7eae3a80f2db.js" integrity="sha256-crURqVKxqSuRtNKTpqmVg9PoT5Nc46ooyhp&#43;rjqA8ts=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://vmjpsa.github.io/tap-workshop-docs/docs/module4/index.xml" title="TAP ワークショップ" />
 <!--
 Made with Book Theme
@@ -451,7 +451,7 @@ node-hello-t… │   → Container node-hello-tanzu-00002-deployment-5ffd767b87
 </figure>
 
 <p>これでLive Update の機能を確認できましたので、Tilt で作成したアプリケーションを削除しましょう。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tanzu apps workload delete node-hello-tanzu
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tanzu apps workload delete node-hello-tanzu -y
 </span></span></code></pre></div><p>また、ログでターミナルが汚れていると思いますので、確認し終わったらclear してしまいましょう。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>clear
 </span></span></code></pre></div></article>

@@ -3,24 +3,26 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="TODO node でどこまで見れるか、見られない場合は次の章に後回し Live View は現在、Spring Boot の Java アプリケーションと、Steeltoe .NET Core アプリケーションに対応しています。#Live View#アプリケーションをデプロイした後、そのアプリケーションが期待通りの動作をせず、診断やトラブルシューティングのためにアプリケーションのランタイムの動作に関する詳細な情報（例えば、アプリケーションのメモリが不足しているのか？ HTTP リクエストのレスポンスタイムはどうなっているのか？）が必要になることがあります。
-Tanzu Application Platform は、Taro のような開発者がそういった情報を収集するのに役立つ Live View を提供しています。ここからは Live View の機能について見てみましょう。まずは TAP GUI （Web UI） にアクセスし、先ほど作成したアプリケーションを確認してみましょう。TAP GUI を再度開く必要がある場合は、下記コマンドでURL を調べることができます。
-echo $TAP_GUI_URL 画像#ここでは、私たちのアプリケーションであるnode-hello-tanzu のDeployment (Kubernetes リソース)を実行しています。複数のDeployment がリストアップされている可能性が高いです。これはマルチテナント開発環境では、異なる開発者 (または異なるワークショップセッション) がそれぞれコードのブランチに取り組んでいるためです。マルチテナント開発クラスタ (TAP では Iterate クラスタとも呼ばれます) では、各開発者は開発環境を分離するために各自のネームスペースで作業しています。
-あなたのセッションの名前空間は下記コマンドで確認できます（今回は全員同じアプリケーションをデプロイしているため、他のユーザーの名前空間を確認しても構いません）。
-echo tap-workshop-$SESSION_NUMBER 次に、名前空間に対応する行のnode-hello-tanzu ハイパーリンクをクリックし、Kind 列のKnative Serviceという値をクリックします。これで、アプリの詳細ビューが表示されます。
-画像#この画面を下にスクロールすると、アプリに関連する Kubernetes リソースが表示されます。画面の一番下には、Pod があります。Kubernetes では Pod はアプリケーションコンテナが実行される場所です。では、自分の Pod の名前をクリックしてみましょう。">
+<meta name="description" content="Git とは#Git はいわゆる分散型バージョン管理システムです。アプリケーションのソースコードを適切にバージョン管理したり、変更を追跡したりするための仕組みの1 つです。また、その分散型という仕組みから、それぞれの開発者がローカルリポジトリで開発を進め、変更を確定（コミット）し、その変更点をリモートリポジトリ（例えばGithub）に送信（プッシュ）するという開発形態をとることができ、チーム開発において様々なメリットを提供します。
+Git を使ったデプロイ#さて、先ほどはLive Update の機能でアプリケーションをデプロイしました。これは個人で開発を進めるためには強力な機能ですが、チームで開発する場合はやはりGit のリモートリポジトリを活用したいです。そこで、今回はGit のリモートリポジトリへのコミットをトリガとしてアプリケーションのデプロイをしてみましょう。
+まず、現時点でカレントディレクトリはnode-hello-tanzu のはずですが、そうでない場合は下記コマンドでカレントディレクトリを変更してください。
+cd $HOME/node-hello-tanzu 次にgit の設定をします。ユーザーのメールアドレスと名前を下記コマンドで設定しますが、特に指定はないため何でも構いません（下記はサンプルです）。ご自身のe-mail アドレスを入力する必要はございません。
+git config --global user.email tap-workshop@test.lab git config --global user.name tap-workshop 先のLive Update で、index.js の「Hello, Tanzu!」を「Hello, Tanzu!!!」等に書き換えました。そこでこの変更をローカルリポジトリにコミットします（「Hello, Tanzu!」のままだと変更がないとみなされるため、git add の前に任意に変更してください）。
+git add -A git commit -m &#34;My first commit!&#34; 変更をリモートリポジトリにプッシュします。
+git push https://$GIT_USER:$GIT_PASSWORD@$GIT_URL/tap-workshop/node-hello-tanzu-$SESSION_NUMBER main これで準備ができたので、下記コマンドでアプリケーションをデプロイしましょう。
+tanzu apps workload create node-hello-tanzu --git-repo https://$GIT_URL/tap-workshop/node-hello-tanzu-$SESSION_NUMBER.git --git-branch main --label app.kubernetes.io/part-of=tanzu-node-hello-tanzu --type web -annotation autoscaling.">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Live View" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Git を使ったデプロイ" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://vmjpsa.github.io/tap-workshop-docs/docs/module5/" />
 
-<title>Live View | TAP ワークショップ</title>
+<title>Git を使ったデプロイ | TAP ワークショップ</title>
 <link rel="manifest" href="/tap-workshop-docs/manifest.json">
 <link rel="icon" href="/tap-workshop-docs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/tap-workshop-docs/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/tap-workshop-docs/flexsearch.min.js"></script>
-  <script defer src="/tap-workshop-docs/en.search.min.b0d7cc7ca2e4675a0a2d9ed9a15acb8d5e46bfe61395f0ef1d941a85f75e64ae.js" integrity="sha256-sNfMfKLkZ1oKLZ7ZoVrLjV5Gv&#43;YTlfDvHZQahfdeZK4=" crossorigin="anonymous"></script>
+  <script defer src="/tap-workshop-docs/en.search.min.2aa03a4f13042c6d19d08f546abb85146b483e9bcb0c9470b2fa35f3d31ad418.js" integrity="sha256-KqA6TxMELG0Z0I9UaruFFGtIPpvLDJRwsvo189Ma1Bg=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://vmjpsa.github.io/tap-workshop-docs/docs/module5/index.xml" title="TAP ワークショップ" />
 <!--
 Made with Book Theme
@@ -146,7 +148,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module5/" class="active">Live View</a>
+    <a href="/tap-workshop-docs/docs/module5/" class="active">Git を使ったデプロイ</a>
   
 
           
@@ -164,7 +166,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module6/" class="">サプライチェーン</a>
+    <a href="/tap-workshop-docs/docs/module6/" class="">ソフトウェアサプライチェーン</a>
   
 
           
@@ -182,7 +184,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module7/" class="">サプライチェーン</a>
+    <a href="/tap-workshop-docs/docs/module7/" class="">セキュアなサプライチェーン</a>
   
 
           
@@ -200,7 +202,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module8/" class="">セキュアなサプライチェーン</a>
+    <a href="/tap-workshop-docs/docs/module8/" class="">SBOM</a>
   
 
           
@@ -218,25 +220,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <span>SBOM</span>
-  
-
-          
-  <ul>
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <span>ほか</span>
+    <a href="/tap-workshop-docs/docs/module9/" class="">まとめ</a>
   
 
           
@@ -283,7 +267,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/tap-workshop-docs/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Live View</strong>
+  <strong>Git を使ったデプロイ</strong>
 
   <label for="toc-control">
     
@@ -299,13 +283,8 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#todo-node-でどこまで見れるか見られない場合は次の章に後回し-live-view-は現在spring-boot-の-java-アプリケーションとsteeltoe-net-core-アプリケーションに対応しています">TODO node でどこまで見れるか、見られない場合は次の章に後回し Live View は現在、Spring Boot の Java アプリケーションと、Steeltoe .NET Core アプリケーションに対応しています。</a></li>
-    <li><a href="#live-view">Live View</a></li>
-    <li><a href="#画像">画像</a></li>
-    <li><a href="#画像-1">画像</a></li>
-    <li><a href="#画像-2">画像</a></li>
-    <li><a href="#画像-3">画像</a></li>
-    <li><a href="#画像-4">画像</a></li>
+    <li><a href="#git-とは">Git とは</a></li>
+    <li><a href="#git-を使ったデプロイ">Git を使ったデプロイ</a></li>
   </ul>
 </nav>
 
@@ -318,47 +297,159 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h2 id="todo-node-でどこまで見れるか見られない場合は次の章に後回し-live-view-は現在spring-boot-の-java-アプリケーションとsteeltoe-net-core-アプリケーションに対応しています">
-  TODO node でどこまで見れるか、見られない場合は次の章に後回し Live View は現在、Spring Boot の Java アプリケーションと、Steeltoe .NET Core アプリケーションに対応しています。
-  <a class="anchor" href="#todo-node-%e3%81%a7%e3%81%a9%e3%81%93%e3%81%be%e3%81%a7%e8%a6%8b%e3%82%8c%e3%82%8b%e3%81%8b%e8%a6%8b%e3%82%89%e3%82%8c%e3%81%aa%e3%81%84%e5%a0%b4%e5%90%88%e3%81%af%e6%ac%a1%e3%81%ae%e7%ab%a0%e3%81%ab%e5%be%8c%e5%9b%9e%e3%81%97-live-view-%e3%81%af%e7%8f%be%e5%9c%a8spring-boot-%e3%81%ae-java-%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%81%a8steeltoe-net-core-%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%81%ab%e5%af%be%e5%bf%9c%e3%81%97%e3%81%a6%e3%81%84%e3%81%be%e3%81%99">#</a>
+  <article class="markdown"><h2 id="git-とは">
+  Git とは
+  <a class="anchor" href="#git-%e3%81%a8%e3%81%af">#</a>
 </h2>
-<h2 id="live-view">
-  Live View
-  <a class="anchor" href="#live-view">#</a>
+<p>Git はいわゆる分散型バージョン管理システムです。アプリケーションのソースコードを適切にバージョン管理したり、変更を追跡したりするための仕組みの1 つです。また、その分散型という仕組みから、それぞれの開発者がローカルリポジトリで開発を進め、変更を確定（コミット）し、その変更点をリモートリポジトリ（例えばGithub）に送信（プッシュ）するという開発形態をとることができ、チーム開発において様々なメリットを提供します。</p>
+<figure><img src="git.png" width="100%"/>
+</figure>
+
+<h2 id="git-を使ったデプロイ">
+  Git を使ったデプロイ
+  <a class="anchor" href="#git-%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4">#</a>
 </h2>
-<p>アプリケーションをデプロイした後、そのアプリケーションが期待通りの動作をせず、診断やトラブルシューティングのためにアプリケーションのランタイムの動作に関する詳細な情報（例えば、アプリケーションのメモリが不足しているのか？ HTTP リクエストのレスポンスタイムはどうなっているのか？）が必要になることがあります。</p>
-<p>Tanzu Application Platform は、Taro のような開発者がそういった情報を収集するのに役立つ Live View を提供しています。ここからは Live View の機能について見てみましょう。まずは TAP GUI （Web UI） にアクセスし、先ほど作成したアプリケーションを確認してみましょう。TAP GUI を再度開く必要がある場合は、下記コマンドでURL を調べることができます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>echo $TAP_GUI_URL
-</span></span></code></pre></div><h2 id="画像">
-  画像
-  <a class="anchor" href="#%e7%94%bb%e5%83%8f">#</a>
-</h2>
-<p>ここでは、私たちのアプリケーションであるnode-hello-tanzu のDeployment (Kubernetes リソース)を実行しています。複数のDeployment がリストアップされている可能性が高いです。これはマルチテナント開発環境では、異なる開発者 (または異なるワークショップセッション) がそれぞれコードのブランチに取り組んでいるためです。マルチテナント開発クラスタ (TAP では Iterate クラスタとも呼ばれます) では、各開発者は開発環境を分離するために各自のネームスペースで作業しています。</p>
-<p>あなたのセッションの名前空間は下記コマンドで確認できます（今回は全員同じアプリケーションをデプロイしているため、他のユーザーの名前空間を確認しても構いません）。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>echo tap-workshop-$SESSION_NUMBER
-</span></span></code></pre></div><p>次に、名前空間に対応する行のnode-hello-tanzu ハイパーリンクをクリックし、Kind 列の<strong>Knative Service</strong>という値をクリックします。これで、アプリの詳細ビューが表示されます。</p>
-<h2 id="画像-1">
-  画像
-  <a class="anchor" href="#%e7%94%bb%e5%83%8f-1">#</a>
-</h2>
-<p>この画面を下にスクロールすると、アプリに関連する Kubernetes リソースが表示されます。画面の一番下には、Pod があります。Kubernetes では Pod はアプリケーションコンテナが実行される場所です。では、自分の Pod の名前をクリックしてみましょう。</p>
-<h2 id="画像-2">
-  画像
-  <a class="anchor" href="#%e7%94%bb%e5%83%8f-2">#</a>
-</h2>
-<p>Pod の情報が見られる画面の上部には、詳細情報が見られる画面へのリンクがあり、プロセスに関する主要な情報に素早くアクセスできます。View Pod Logs をクリックすると、アプリが動作している Kubernetes サーバーのアプリケーションログを見ることができます。</p>
-<h2 id="画像-3">
-  画像
-  <a class="anchor" href="#%e7%94%bb%e5%83%8f-3">#</a>
-</h2>
-<p>少し下にスクロールすると、ライブビューペインが表示されます。ここには、Information Category というドロップダウンのメニューがあり、Application Runtime のあらゆるデータを閲覧することができます。</p>
-<h2 id="画像-4">
-  画像
-  <a class="anchor" href="#%e7%94%bb%e5%83%8f-4">#</a>
-</h2>
-<p>これらのデータを好きに確認してみてください。ここには多くの見るべきものがあり、アプリケーションの環境変数のチェック、スレッドスタックトレースの表示、メモリ消費量のグラフ表示、各 HTTP リクエストのトレース情報など、様々な情報を見ることができます。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tanzu workload apps delete node-hello-tanzu -y
-</span></span></code></pre></div></article>
+<p>さて、先ほどはLive Update の機能でアプリケーションをデプロイしました。これは個人で開発を進めるためには強力な機能ですが、チームで開発する場合はやはりGit のリモートリポジトリを活用したいです。そこで、今回はGit のリモートリポジトリへのコミットをトリガとしてアプリケーションのデプロイをしてみましょう。</p>
+<p>まず、現時点でカレントディレクトリはnode-hello-tanzu のはずですが、そうでない場合は下記コマンドでカレントディレクトリを変更してください。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd $HOME/node-hello-tanzu
+</span></span></code></pre></div><p>次にgit の設定をします。ユーザーのメールアドレスと名前を下記コマンドで設定しますが、特に指定はないため何でも構いません（下記はサンプルです）。<strong>ご自身のe-mail アドレスを入力する必要はございません。</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git config --global user.email tap-workshop@test.lab
+</span></span><span style="display:flex;"><span>git config --global user.name tap-workshop
+</span></span></code></pre></div><p>先のLive Update で、index.js の「Hello, Tanzu!」を「Hello, Tanzu!!!」等に書き換えました。そこでこの変更をローカルリポジトリにコミットします（「Hello, Tanzu!」のままだと変更がないとみなされるため、git add の前に任意に変更してください）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git add -A
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;My first commit!&#34;</span>
+</span></span></code></pre></div><p>変更をリモートリポジトリにプッシュします。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git push https://$GIT_USER:$GIT_PASSWORD@$GIT_URL/tap-workshop/node-hello-tanzu-$SESSION_NUMBER main
+</span></span></code></pre></div><p>これで準備ができたので、下記コマンドでアプリケーションをデプロイしましょう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tanzu apps workload create node-hello-tanzu --git-repo https://$GIT_URL/tap-workshop/node-hello-tanzu-$SESSION_NUMBER.git --git-branch main --label app.kubernetes.io/part-of<span style="color:#f92672">=</span>tanzu-node-hello-tanzu --type web -annotation autoscaling.knative.dev/minScale<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> -y
+</span></span></code></pre></div><p>このコマンドは少々複雑ですが、オプションとしてgit リポジトリやブランチなどを指定しています。 &ndash;annotation autoscaling.knative.dev/minScale=1 の意味は、Knative Serving の最小インスタンス数を1 以上に設定し、時間経過でPod の数が0 になることを防止しています。</p>
+<p>&ndash;type web はワークロードの種類になります。TAP1.3 ではweb, server, worker タイプをサポートしています。詳細は下記ドキュメントをご参照ください。</p>
+<p><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-workloads-workload-types.html">https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-workloads-workload-types.html</a></p>
+<p>tanzu コマンドの結果として、下記のようなログが出力されるはずです。</p>
+<pre tabindex="0"><code>coder@code-server-696f98d647-vx77m:~/node-hello-tanzu$ tanzu apps workload create node-hello-tanzu --git-repo https://$GIT_URL/tap-workshop/node-hello-tanzu-$SESSION_NUMBER.git --git-branch main --label app.kubernetes.io/part-of=node-hello-tanzu --type web -y
+Create workload:
+      1 + |---
+      2 + |apiVersion: carto.run/v1alpha1
+      3 + |kind: Workload
+      4 + |metadata:
+      5 + |  labels:
+      6 + |    app.kubernetes.io/part-of: node-hello-tanzu
+      7 + |    apps.tanzu.vmware.com/workload-type: web
+      8 + |  name: node-hello-tanzu
+      9 + |  namespace: tap-workshop-01
+     10 + |spec:
+     11 + |  source:
+     12 + |    git:
+     13 + |      ref:
+     14 + |        branch: main
+     15 + |      url: https://$GIT_URL/tap-workshop/node-hello-tanzu-01.git
+
+Created workload &#34;node-hello-tanzu&#34;
+
+To see logs:   &#34;tanzu apps workload tail node-hello-tanzu&#34;
+To get status: &#34;tanzu apps workload get node-hello-tanzu&#34;
+</code></pre><p>指示通り、デプロイの状態を確認してみましょう。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tanzu apps workload get node-hello-tanzu 
+</span></span></code></pre></div><pre tabindex="0"><code>coder@code-server-696f98d647-vx77m:~/node-hello-tanzu$ tanzu apps workload get node-hello-tanzu
+📡 Overview
+   name:   node-hello-tanzu
+   type:   web
+
+💾 Source
+   type:     git
+   url:      https://$GIT_URL/tap-workshop/node-hello-tanzu-01.git
+   branch:   main
+
+📦 Supply Chain
+   name:   source-to-url
+
+   RESOURCE           READY     HEALTHY   TIME   OUTPUT
+   source-provider    Unknown   Unknown   3s     GitRepository/node-hello-tanzu
+   image-provider     False     Unknown   3s     not found
+   config-provider    False     Unknown   3s     not found
+   app-config         False     True      3s     not found
+   service-bindings   False     True      3s     not found
+   api-descriptors    False     True      3s     not found
+   config-writer      False     Unknown   3s     not found
+
+🚚 Delivery
+
+   Delivery resources not found.
+
+💬 Messages
+   Workload [MissingValueAtPath]:     waiting to read value [.status.artifact.url] from resource [gitrepository.source.toolkit.fluxcd.io/node-hello-tanzu] in namespace [tap-workshop-01]
+   Workload [HealthyConditionRule]:   condition with type [Ready] not found on resource status
+
+🛶 Pods
+   NAME                                 READY   STATUS    RESTARTS   AGE
+   node-hello-tanzu-build-1-build-pod   0/1     Pending   0          0s
+
+To see logs: &#34;tanzu apps workload tail node-hello-tanzu&#34;
+</code></pre><p>デプロイが完了するまでしばらく待ちましょう。下記コマンドでデプロイまでのログを確認できます（中断はCtrl+c）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tanzu apps workload tail node-hello-tanzu
+</span></span></code></pre></div><p>アプリケーションのデプロイが完了すると、下記のように表示されますので、🚢 Knative Services の欄で出力されたURL にアクセスするとLive Update と同様index.js の文字列が出力されるはずです（URL をCtrl+クリックで別タブで開くことができます）。</p>
+<pre tabindex="0"><code>coder@code-server-696f98d647-vx77m:~/node-hello-tanzu$ tanzu apps workload get node-hello-tanzu
+📡 Overview
+   name:   node-hello-tanzu
+   type:   web
+
+💾 Source
+   type:     git
+   url:      https://$GIT_URL/tap-workshop/node-hello-tanzu-01.git
+   branch:   main
+
+📦 Supply Chain
+   name:   source-to-url
+
+   RESOURCE           READY   HEALTHY   TIME   OUTPUT
+   source-provider    True    True      83s    GitRepository/node-hello-tanzu
+   image-provider     True    True      63s    Image/node-hello-tanzu
+   config-provider    True    True      56s    PodIntent/node-hello-tanzu
+   app-config         True    True      56s    ConfigMap/node-hello-tanzu
+   service-bindings   True    True      56s    ConfigMap/node-hello-tanzu-with-claims
+   api-descriptors    True    True      56s    ConfigMap/node-hello-tanzu-with-api-descriptors
+   config-writer      True    True      49s    Runnable/node-hello-tanzu-config-writer
+
+🚚 Delivery
+   name:   delivery-basic
+
+   RESOURCE          READY   HEALTHY   TIME   OUTPUT
+   source-provider   True    True      23s    ImageRepository/node-hello-tanzu-delivery
+   deployer          True    True      16s    App/node-hello-tanzu
+
+💬 Messages
+   No messages found.
+
+🛶 Pods
+   NAME                                                 READY   STATUS      RESTARTS   AGE
+   node-hello-tanzu-00001-deployment-54bcc768bb-sgrnp   2/2     Running     0          23s
+   node-hello-tanzu-build-1-build-pod                   0/1     Completed   0          87s
+   node-hello-tanzu-config-writer-ts27k-pod             0/1     Completed   0          57s
+
+🚢 Knative Services
+   NAME               READY   URL
+   node-hello-tanzu   Ready   http://node-hello-tanzu.tap-workshop-01.***
+
+To see logs: &#34;tanzu apps workload tail node-hello-tanzu&#34;
+</code></pre><figure><img src="hello-tanzu.png" width="100%"/>
+</figure>
+
+<p>アプリケーションのデプロイが確認出来たら、ソースコードを変更してみます。index.js の「Hello Tanzu!!!」を「Hello Git Tanzu!!!」と変更します（Code Server 上でのファイルの変更は自動で保存されるためCtrl+s などは必要ありません）。</p>
+<figure><img src="hello-git-tanzu-edit.png" width="100%"/>
+</figure>
+
+<p>ここでは、Live Update と異なりアプリケーションの更新は発生しません。先ほどのtanzu apps workload create コマンドでは、リモートリポジトリへの変更を追跡し、その変更をトリガに再ビルドをさせようとしていますので、再びコードをコミットし、リモートリポジトリにプッシュします。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>git add -A
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;My Second commit!&#34;</span>
+</span></span><span style="display:flex;"><span>git push https://$GIT_USER:$GIT_PASSWORD@$GIT_URL/tap-workshop/node-hello-tanzu-$SESSION_NUMBER main
+</span></span></code></pre></div><p>変更が反映されるまでしばらく待ってください。下記コマンドでアプリケーションの再ビルドが走ることを追跡することもできます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tanzu apps workload get node-hello-tanzu 
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tanzu apps workload tail node-hello-tanzu
+</span></span></code></pre></div><p>先と同じように、アプリケーションのURL が発行されたらアクセスし、表示が「Hello Git Tanzu!!!」に変わっていることを確認します。</p>
+<figure><img src="hello-git-tanzu.png" width="100%"/>
+</figure>
+
+</article>
  
       
 
@@ -399,13 +490,8 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#todo-node-でどこまで見れるか見られない場合は次の章に後回し-live-view-は現在spring-boot-の-java-アプリケーションとsteeltoe-net-core-アプリケーションに対応しています">TODO node でどこまで見れるか、見られない場合は次の章に後回し Live View は現在、Spring Boot の Java アプリケーションと、Steeltoe .NET Core アプリケーションに対応しています。</a></li>
-    <li><a href="#live-view">Live View</a></li>
-    <li><a href="#画像">画像</a></li>
-    <li><a href="#画像-1">画像</a></li>
-    <li><a href="#画像-2">画像</a></li>
-    <li><a href="#画像-3">画像</a></li>
-    <li><a href="#画像-4">画像</a></li>
+    <li><a href="#git-とは">Git とは</a></li>
+    <li><a href="#git-を使ったデプロイ">Git を使ったデプロイ</a></li>
   </ul>
 </nav>
 

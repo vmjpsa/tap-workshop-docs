@@ -1,8 +1,8 @@
 ---
 weight: 8
-title: "セキュアなサプライチェーン"
+title: "SBOM"
 ---
 
-# Live Update
+# SBOM
 
-概要
+tanzu insight コマンドの出力を張り付けて終了 ユーザーの作業はなし

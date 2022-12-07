@@ -3,46 +3,47 @@ weight: 1
 title: "ワークショップ環境"
 ---
 
-# ワークショップ環境の概要
+## ワークショップ環境の概要
 
 本ワークショップではCode Server と呼ばれるWeb サービスとし提供されるVS Code 環境を利用します。アクセスURL とパスワードに関しては講師からお伝えします。
 
 ワークショップを提供する環境は以下のようになっています。
+
 {{< figure src="workshop-architecture.png" width="100%">}}
 TAP は既にインストール済みなので、ワークショップ参加者がTAP のインストールや構成変更をする必要はありません。参加者ごとに提供されるCode Server と名前空間の中でアプリケーションのビルドやデプロイを実施します。
 
-# Code Server の使い方
-{{< figure src="codeserver-overview.png" width="100%">}}
+## Code Server の使い方
+さっそくCode Server にアクセスしてみましょう。下記のような画面が表示された場合は、Yes, I trust the authors を選択してください。
 
-ユーザーは本マニュアルに沿ってCode Server 上で提供されるエディタ機能やターミナルを用いてラボを進めます。
+{{< figure src="coder-trust.png" width="100%">}}
+
+すると下記のような画面になるはずです。
+{{< figure src="coder-top.png" width="100%">}}
+
+ここで、Ctrl + J キー、または下記の画像のように、ハンバーガーボタン→ Terminal → New Terminal で、ターミナルを表示させます。
+
+{{< figure src="coder-terminal.png" width="100%">}}
+
+画面構成が下記のようになったら、ワークショップを進める準備は完了です。基本的なコマンド操作はターミナル上で行い、一部ファイル編集はエディタ上で行います。
+
+{{< figure src="coder-howtouse.png" width="100%">}}
 
 ## 本マニュアルの使い方
 マニュアルと講師の指示通り操作します。ターミナルでの操作は下記のように表現しています。右上の📋（コピーボタン）をクリックすれば、クリップボードにコマンドをコピーできます。試しにやってみましょう。
+
 ```shell
 ls
 ```
-{{/* TODO 要確認 */}}
-コマンドの貼り付けはCtrl+V キーで行います。**Code Server の"ターミナル"では右クリックが許可されていないことに注意してください。**
 
+コマンドの貼り付けは右クリックまたはCtrl+v キーで行います。Code Server のターミナルでは右クリックができない場合がありますが、その場合はCtrl+v で行ってください。
+
+{{< figure src="coder-ls.png" width="100%">}}
 
 一方で、単なるログの共有等には下記のような書き方をしていることに注意してください（コピーボタン📋はありません）。この場合はコマンドではないのでターミナルで入力する必要はないです。
-```
 
 ```
+coder@code-server-696f98d647-vx77m:~$ ls
+install-from-tanzunet.sh  kubeconfig
+```
 
-
-{{<hint info>}}
-補足情報を書きます。
-{{</hint>}}
-
-{{<hint warning>}}
-注意が必要な情報を書きます。
-{{</hint>}}
-
-{{<hint danger>}}
-ラボの進行に影響があるなど、重要な情報を書きます。
-{{</hint>}}
-
-{{<details "解答" >}}
-解答です。
-{{</details>}}
+Code Server の使い方に慣れたら、次に進みましょう。

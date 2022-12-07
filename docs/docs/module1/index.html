@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ワークショップ環境の概要#本ワークショップではCode Server と呼ばれるWeb サービスとし提供されるVS Code 環境を利用します。アクセスURL とパスワードに関しては講師からお伝えします。
-ワークショップを提供する環境は以下のようになっています。 TAP は既にインストール済みなので、ワークショップ参加者がTAP のインストールや構成変更をする必要はありません。参加者ごとに提供されるCode Server と名前空間の中でアプリケーションのビルドやデプロイを実施します。
-Code Server の使い方#ユーザーは本マニュアルに沿ってCode Server 上で提供されるエディタ機能やターミナルを用いてラボを進めます。
+<meta name="description" content="ワークショップ環境の概要#本ワークショップではCode Server と呼ばれるWeb サービスとし提供されるVS Code 環境を利用します。アクセスURL とパスワードに関しては講師からお伝えします。
+ワークショップを提供する環境は以下のようになっています。
+TAP は既にインストール済みなので、ワークショップ参加者がTAP のインストールや構成変更をする必要はありません。参加者ごとに提供されるCode Server と名前空間の中でアプリケーションのビルドやデプロイを実施します。
+Code Server の使い方#さっそくCode Server にアクセスしてみましょう。下記のような画面が表示された場合は、Yes, I trust the authors を選択してください。
+すると下記のような画面になるはずです。 ここで、Ctrl &#43; J キー、または下記の画像のように、ハンバーガーボタン→ Terminal → New Terminal で、ターミナルを表示させます。
+画面構成が下記のようになったら、ワークショップを進める準備は完了です。基本的なコマンド操作はターミナル上で行い、一部ファイル編集はエディタ上で行います。
 本マニュアルの使い方#マニュアルと講師の指示通り操作します。ターミナルでの操作は下記のように表現しています。右上の📋（コピーボタン）をクリックすれば、クリップボードにコマンドをコピーできます。試しにやってみましょう。
-ls {{/* TODO 要確認 */}} コマンドの貼り付けはCtrl&#43;V キーで行います。Code Server の&quot;ターミナル&quot;では右クリックが許可されていないことに注意してください。
+ls コマンドの貼り付けは右クリックまたはCtrl&#43;v キーで行います。Code Server のターミナルでは右クリックができない場合がありますが、その場合はCtrl&#43;v で行ってください。
 一方で、単なるログの共有等には下記のような書き方をしていることに注意してください（コピーボタン📋はありません）。この場合はコマンドではないのでターミナルで入力する必要はないです。
-補足情報を書きます。注意が必要な情報を書きます。ラボの進行に影響があるなど、重要な情報を書きます。解答解答です。">
+coder@code-server-696f98d647-vx77m:~$ lsinstall-from-tanzunet.sh kubeconfig Code Server の使い方に慣れたら、次に進みましょう。">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="ワークショップ環境" />
 <meta property="og:description" content="" />
@@ -21,7 +24,7 @@ ls {{/* TODO 要確認 */}} コマンドの貼り付けはCtrl&#43;V キーで�
 <link rel="icon" href="/tap-workshop-docs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/tap-workshop-docs/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/tap-workshop-docs/flexsearch.min.js"></script>
-  <script defer src="/tap-workshop-docs/en.search.min.b0d7cc7ca2e4675a0a2d9ed9a15acb8d5e46bfe61395f0ef1d941a85f75e64ae.js" integrity="sha256-sNfMfKLkZ1oKLZ7ZoVrLjV5Gv&#43;YTlfDvHZQahfdeZK4=" crossorigin="anonymous"></script>
+  <script defer src="/tap-workshop-docs/en.search.min.2aa03a4f13042c6d19d08f546abb85146b483e9bcb0c9470b2fa35f3d31ad418.js" integrity="sha256-KqA6TxMELG0Z0I9UaruFFGtIPpvLDJRwsvo189Ma1Bg=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://vmjpsa.github.io/tap-workshop-docs/docs/module1/index.xml" title="TAP ワークショップ" />
 <!--
 Made with Book Theme
@@ -147,7 +150,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module5/" class="">Live View</a>
+    <a href="/tap-workshop-docs/docs/module5/" class="">Git を使ったデプロイ</a>
   
 
           
@@ -165,7 +168,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module6/" class="">サプライチェーン</a>
+    <a href="/tap-workshop-docs/docs/module6/" class="">ソフトウェアサプライチェーン</a>
   
 
           
@@ -183,7 +186,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module7/" class="">サプライチェーン</a>
+    <a href="/tap-workshop-docs/docs/module7/" class="">セキュアなサプライチェーン</a>
   
 
           
@@ -201,7 +204,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module8/" class="">セキュアなサプライチェーン</a>
+    <a href="/tap-workshop-docs/docs/module8/" class="">SBOM</a>
   
 
           
@@ -219,25 +222,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <span>SBOM</span>
-  
-
-          
-  <ul>
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <span>ほか</span>
+    <a href="/tap-workshop-docs/docs/module9/" class="">まとめ</a>
   
 
           
@@ -300,6 +285,8 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#ワークショップ環境の概要">ワークショップ環境の概要</a></li>
+    <li><a href="#code-server-の使い方">Code Server の使い方</a></li>
     <li><a href="#本マニュアルの使い方">本マニュアルの使い方</a></li>
   </ul>
 </nav>
@@ -313,51 +300,50 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="ワークショップ環境の概要">
+  <article class="markdown"><h2 id="ワークショップ環境の概要">
   ワークショップ環境の概要
   <a class="anchor" href="#%e3%83%af%e3%83%bc%e3%82%af%e3%82%b7%e3%83%a7%e3%83%83%e3%83%97%e7%92%b0%e5%a2%83%e3%81%ae%e6%a6%82%e8%a6%81">#</a>
-</h1>
+</h2>
 <p>本ワークショップではCode Server と呼ばれるWeb サービスとし提供されるVS Code 環境を利用します。アクセスURL とパスワードに関しては講師からお伝えします。</p>
-<p>ワークショップを提供する環境は以下のようになっています。
-<figure><img src="workshop-architecture.png" width="100%"/>
+<p>ワークショップを提供する環境は以下のようになっています。</p>
+<p><figure><img src="workshop-architecture.png" width="100%"/>
 </figure>
 
 TAP は既にインストール済みなので、ワークショップ参加者がTAP のインストールや構成変更をする必要はありません。参加者ごとに提供されるCode Server と名前空間の中でアプリケーションのビルドやデプロイを実施します。</p>
-<h1 id="code-server-の使い方">
+<h2 id="code-server-の使い方">
   Code Server の使い方
   <a class="anchor" href="#code-server-%e3%81%ae%e4%bd%bf%e3%81%84%e6%96%b9">#</a>
-</h1>
-<figure><img src="codeserver-overview.png" width="100%"/>
+</h2>
+<p>さっそくCode Server にアクセスしてみましょう。下記のような画面が表示された場合は、Yes, I trust the authors を選択してください。</p>
+<figure><img src="coder-trust.png" width="100%"/>
 </figure>
 
-<p>ユーザーは本マニュアルに沿ってCode Server 上で提供されるエディタ機能やターミナルを用いてラボを進めます。</p>
+<p>すると下記のような画面になるはずです。
+<figure><img src="coder-top.png" width="100%"/>
+</figure>
+</p>
+<p>ここで、Ctrl + J キー、または下記の画像のように、ハンバーガーボタン→ Terminal → New Terminal で、ターミナルを表示させます。</p>
+<figure><img src="coder-terminal.png" width="100%"/>
+</figure>
+
+<p>画面構成が下記のようになったら、ワークショップを進める準備は完了です。基本的なコマンド操作はターミナル上で行い、一部ファイル編集はエディタ上で行います。</p>
+<figure><img src="coder-howtouse.png" width="100%"/>
+</figure>
+
 <h2 id="本マニュアルの使い方">
   本マニュアルの使い方
   <a class="anchor" href="#%e6%9c%ac%e3%83%9e%e3%83%8b%e3%83%a5%e3%82%a2%e3%83%ab%e3%81%ae%e4%bd%bf%e3%81%84%e6%96%b9">#</a>
 </h2>
 <p>マニュアルと講師の指示通り操作します。ターミナルでの操作は下記のように表現しています。右上の📋（コピーボタン）をクリックすれば、クリップボードにコマンドをコピーできます。試しにやってみましょう。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls
-</span></span></code></pre></div><p>{{/* TODO 要確認 */}}
-コマンドの貼り付けはCtrl+V キーで行います。<strong>Code Server の&quot;ターミナル&quot;では右クリックが許可されていないことに注意してください。</strong></p>
+</span></span></code></pre></div><p>コマンドの貼り付けは右クリックまたはCtrl+v キーで行います。Code Server のターミナルでは右クリックができない場合がありますが、その場合はCtrl+v で行ってください。</p>
+<figure><img src="coder-ls.png" width="100%"/>
+</figure>
+
 <p>一方で、単なるログの共有等には下記のような書き方をしていることに注意してください（コピーボタン📋はありません）。この場合はコマンドではないのでターミナルで入力する必要はないです。</p>
-<pre tabindex="0"><code></code></pre><blockquote class="book-hint info">
-  補足情報を書きます。
-</blockquote>
-
-<blockquote class="book-hint warning">
-  注意が必要な情報を書きます。
-</blockquote>
-
-<blockquote class="book-hint danger">
-  ラボの進行に影響があるなど、重要な情報を書きます。
-</blockquote>
-
-<details ><summary>解答</summary>
-  <div class="markdown-inner">
-    解答です。
-  </div>
-</details>
-
+<pre tabindex="0"><code>coder@code-server-696f98d647-vx77m:~$ ls
+install-from-tanzunet.sh  kubeconfig
+</code></pre><p>Code Server の使い方に慣れたら、次に進みましょう。</p>
 </article>
  
       
@@ -399,6 +385,8 @@ TAP は既にインストール済みなので、ワークショップ参加者�
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#ワークショップ環境の概要">ワークショップ環境の概要</a></li>
+    <li><a href="#code-server-の使い方">Code Server の使い方</a></li>
     <li><a href="#本マニュアルの使い方">本マニュアルの使い方</a></li>
   </ul>
 </nav>

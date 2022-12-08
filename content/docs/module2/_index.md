@@ -1,6 +1,6 @@
 ---
 weight: 2
-title: "TAP 概要"
+title: "TAP の概要"
 ---
 
 ## TAP が求められる背景

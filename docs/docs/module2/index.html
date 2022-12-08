@@ -12,17 +12,17 @@
 そういったマニュアル作業や依存性の問題が辛くなってきたユーザーは、汎用パイプラインを卒業して多くの場合は K8s フレンドリーなツール群を使い始めます。有名なものは図にある Tekton や ArgoCD などです。たとえば Tekton によるビルドは K8s 方式の YAML 定義で実現できますし、ArgoCD によるデプロイは同様に Git リポジトリ上にある YAML 定義の構成ファイルに勝手に K8s クラスタをシンクさせるといった動きをします。Jenkins で人間の操作を自動化にそのまま落とし込むとパイプラインがフルオーダーメイドで調整しにくくなる一方、TektonやArgoCDなどはパラメーターをちょっと変更するセミオーダーメイドなので導入が簡単です。K8s のパワーユーザーはこういったツールを他にも大量に組み合わせてパイプラインを作ることが多いです。ただ、この方式にも問題があります。それは、「1つ1つの道具としては優秀なものの、それらを人間が手組みで組み合わせるという作業に辛さを覚える」という問題です。NHKの有名な教育番組のピタゴラスイッチというものがありますが、ちょうどあれを作るかのような感覚でパイプラインを組むようなものです。
 そういったユーザーが最後にたどり着くのが K8s のパイプラインフレームワークであり、VMware 製品ではこの記事で紹介する Tanzu Application Platform （TAP）となります。パイプラインフレームワークはパイプラインを構築しやすくするための仕組みであり、TAP の場合はまるでレゴでパイプラインを組み立てるかのように「フレームワークに道具を簡単にはめこめる」「道具は変更可能」ということを実現しています。こうすることで、手で調整するピタゴラスイッチなパイプラインから、ミニ四駆のような規格化されたパーツを目的に沿って組み合わせる形のパイプラインを構築できるようになります。">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="TAP 概要" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="TAP の概要" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://vmjpsa.github.io/tap-workshop-docs/docs/module2/" />
 
-<title>TAP 概要 | TAP ワークショップ</title>
+<title>TAP の概要 | TAP ワークショップ</title>
 <link rel="manifest" href="/tap-workshop-docs/manifest.json">
 <link rel="icon" href="/tap-workshop-docs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/tap-workshop-docs/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/tap-workshop-docs/flexsearch.min.js"></script>
-  <script defer src="/tap-workshop-docs/en.search.min.557c8daed9e291f7c1d62e720da92c265339b564df6d4b8ec37e921e1f31b1ee.js" integrity="sha256-VXyNrtnikffB1i5yDaksJlM5tWTfbUuOw36SHh8xse4=" crossorigin="anonymous"></script>
+  <script defer src="/tap-workshop-docs/en.search.min.5462cad24eb3cce38d266c63e20078853262d3ec1a71e75da75b569f540ce948.js" integrity="sha256-VGLK0k6zzOONJmxj4gB4hTJi0&#43;waceddp1tWn1QM6Ug=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://vmjpsa.github.io/tap-workshop-docs/docs/module2/index.xml" title="TAP ワークショップ" />
 <!--
 Made with Book Theme
@@ -94,7 +94,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module2/" class="active">TAP 概要</a>
+    <a href="/tap-workshop-docs/docs/module2/" class="active">TAP の概要</a>
   
 
           
@@ -184,7 +184,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module7/" class="">セキュアなサプライチェーン</a>
+    <a href="/tap-workshop-docs/docs/module7/" class="">セキュアなソフトウェアサプライチェーン</a>
   
 
           
@@ -202,7 +202,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module8/" class="">SBOM</a>
+    <a href="/tap-workshop-docs/docs/module8/" class="">TAP のセキュリティ</a>
   
 
           
@@ -267,7 +267,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/tap-workshop-docs/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>TAP 概要</strong>
+  <strong>TAP の概要</strong>
 
   <label for="toc-control">
     

@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="セキュアなサプライチェーン#node-hello-tanzu と同様、リモートリポジトリにあるファイルを入力値として、tanzu コマンドでtanzu-java-web-app アプリケーションをデプロイします。これはJava Spring アプリケーションです。
+<meta name="description" content="セキュアなソフトウェアサプライチェーン#node-hello-tanzu と同様、リモートリポジトリにあるファイルを入力値として、tanzu コマンドでtanzu-java-web-app アプリケーションをデプロイします。これはJava Spring アプリケーションです。
 tanzu apps workload create tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --label apps.tanzu.vmware.com/has-tests=true --label app.kubernetes.io/part-of=tanzu-java-web-app --annotation autoscaling.knative.dev/minScale=1 -y coder@code-server-696f98d647-vx77m:~/node-hello-tanzu$ tanzu apps workload create tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --label apps.tanzu.vmware.com/has-tests=true --label app.kubernetes.io/part-of=tanzu-java-web-app --annotation autoscaling.knative.dev/minScale=1 -yCreate workload:1 &#43; |---2 &#43; |apiVersion: carto.run/v1alpha13 &#43; |kind: Workload4 &#43; |metadata:5 &#43; | labels:6 &#43; | app.">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="セキュアなサプライチェーン" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="セキュアなソフトウェアサプライチェーン" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://vmjpsa.github.io/tap-workshop-docs/docs/module7/" />
 
-<title>セキュアなサプライチェーン | TAP ワークショップ</title>
+<title>セキュアなソフトウェアサプライチェーン | TAP ワークショップ</title>
 <link rel="manifest" href="/tap-workshop-docs/manifest.json">
 <link rel="icon" href="/tap-workshop-docs/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/tap-workshop-docs/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/tap-workshop-docs/flexsearch.min.js"></script>
-  <script defer src="/tap-workshop-docs/en.search.min.557c8daed9e291f7c1d62e720da92c265339b564df6d4b8ec37e921e1f31b1ee.js" integrity="sha256-VXyNrtnikffB1i5yDaksJlM5tWTfbUuOw36SHh8xse4=" crossorigin="anonymous"></script>
+  <script defer src="/tap-workshop-docs/en.search.min.5462cad24eb3cce38d266c63e20078853262d3ec1a71e75da75b569f540ce948.js" integrity="sha256-VGLK0k6zzOONJmxj4gB4hTJi0&#43;waceddp1tWn1QM6Ug=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://vmjpsa.github.io/tap-workshop-docs/docs/module7/index.xml" title="TAP ワークショップ" />
 <!--
 Made with Book Theme
@@ -88,7 +88,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module2/" class="">TAP 概要</a>
+    <a href="/tap-workshop-docs/docs/module2/" class="">TAP の概要</a>
   
 
           
@@ -178,7 +178,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module7/" class="active">セキュアなサプライチェーン</a>
+    <a href="/tap-workshop-docs/docs/module7/" class="active">セキュアなソフトウェアサプライチェーン</a>
   
 
           
@@ -196,7 +196,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/tap-workshop-docs/docs/module8/" class="">SBOM</a>
+    <a href="/tap-workshop-docs/docs/module8/" class="">TAP のセキュリティ</a>
   
 
           
@@ -261,7 +261,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/tap-workshop-docs/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>セキュアなサプライチェーン</strong>
+  <strong>セキュアなソフトウェアサプライチェーン</strong>
 
   <label for="toc-control">
     
@@ -286,9 +286,9 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="セキュアなサプライチェーン">
-  セキュアなサプライチェーン
-  <a class="anchor" href="#%e3%82%bb%e3%82%ad%e3%83%a5%e3%82%a2%e3%81%aa%e3%82%b5%e3%83%97%e3%83%a9%e3%82%a4%e3%83%81%e3%82%a7%e3%83%bc%e3%83%b3">#</a>
+  <article class="markdown"><h1 id="セキュアなソフトウェアサプライチェーン">
+  セキュアなソフトウェアサプライチェーン
+  <a class="anchor" href="#%e3%82%bb%e3%82%ad%e3%83%a5%e3%82%a2%e3%81%aa%e3%82%bd%e3%83%95%e3%83%88%e3%82%a6%e3%82%a7%e3%82%a2%e3%82%b5%e3%83%97%e3%83%a9%e3%82%a4%e3%83%81%e3%82%a7%e3%83%bc%e3%83%b3">#</a>
 </h1>
 <p>node-hello-tanzu と同様、リモートリポジトリにあるファイルを入力値として、tanzu コマンドでtanzu-java-web-app アプリケーションをデプロイします。これはJava Spring アプリケーションです。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>tanzu apps workload create tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --label apps.tanzu.vmware.com/has-tests<span style="color:#f92672">=</span>true --label app.kubernetes.io/part-of<span style="color:#f92672">=</span>tanzu-java-web-app --annotation autoscaling.knative.dev/minScale<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> -y
